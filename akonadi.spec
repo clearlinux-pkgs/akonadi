@@ -6,21 +6,22 @@
 #
 Name     : akonadi
 Version  : 18.08.0
-Release  : 3
+Release  : 4
 URL      : https://download.kde.org/stable/applications/18.08.0/src/akonadi-18.08.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.08.0/src/akonadi-18.08.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.08.0/src/akonadi-18.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause LGPL-2.1
-Requires: akonadi-bin
-Requires: akonadi-lib
-Requires: akonadi-data
-Requires: akonadi-license
-Requires: akonadi-locales
+Requires: akonadi-bin = %{version}-%{release}
+Requires: akonadi-data = %{version}-%{release}
+Requires: akonadi-lib = %{version}-%{release}
+Requires: akonadi-license = %{version}-%{release}
+Requires: akonadi-locales = %{version}-%{release}
 BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : kcrash-dev
 BuildRequires : kdbusaddons-dev
 BuildRequires : kdesignerplugin-dev
@@ -29,7 +30,7 @@ BuildRequires : kwindowsystem-dev
 BuildRequires : libxml2-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(sqlite3)
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 BuildRequires : shared-mime-info
 
 %description
@@ -43,8 +44,8 @@ of PIM data (e.g. mails, contacts, events, todos etc.).
 %package bin
 Summary: bin components for the akonadi package.
 Group: Binaries
-Requires: akonadi-data
-Requires: akonadi-license
+Requires: akonadi-data = %{version}-%{release}
+Requires: akonadi-license = %{version}-%{release}
 
 %description bin
 bin components for the akonadi package.
@@ -61,10 +62,10 @@ data components for the akonadi package.
 %package dev
 Summary: dev components for the akonadi package.
 Group: Development
-Requires: akonadi-lib
-Requires: akonadi-bin
-Requires: akonadi-data
-Provides: akonadi-devel
+Requires: akonadi-lib = %{version}-%{release}
+Requires: akonadi-bin = %{version}-%{release}
+Requires: akonadi-data = %{version}-%{release}
+Provides: akonadi-devel = %{version}-%{release}
 
 %description dev
 dev components for the akonadi package.
@@ -73,8 +74,8 @@ dev components for the akonadi package.
 %package lib
 Summary: lib components for the akonadi package.
 Group: Libraries
-Requires: akonadi-data
-Requires: akonadi-license
+Requires: akonadi-data = %{version}-%{release}
+Requires: akonadi-license = %{version}-%{release}
 
 %description lib
 lib components for the akonadi package.
@@ -104,11 +105,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535423780
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1543344796
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %check
@@ -116,14 +117,14 @@ export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-pushd clr-build ; make test ||: ; popd
+cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1535423780
+export SOURCE_DATE_EPOCH=1543344796
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/akonadi
-cp COPYING.LIB %{buildroot}/usr/share/doc/akonadi/COPYING.LIB
-cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/akonadi/cmake_modules_COPYING-CMAKE-SCRIPTS
+mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/COPYING.LIB
+cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/cmake_modules_COPYING-CMAKE-SCRIPTS
 pushd clr-build
 %make_install
 popd
@@ -179,7 +180,7 @@ popd
 /usr/share/kf5/akonadi/akonadi-xml.xsd
 /usr/share/kf5/akonadi/kcfg2dbus.xsl
 /usr/share/kf5/akonadi_knut_resource/knut-template.xml
-/usr/share/mime/packages/akonadi-mime.xml
+/usr/share/mime-packages/akonadi-mime.xml
 /usr/share/xdg/akonadi.categories
 /usr/share/xdg/akonadi.renamecategories
 /usr/share/xdg/akonadi/mysql-global-mobile.conf
@@ -517,9 +518,9 @@ popd
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/akonadi/COPYING.LIB
-/usr/share/doc/akonadi/cmake_modules_COPYING-CMAKE-SCRIPTS
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/akonadi/COPYING.LIB
+/usr/share/package-licenses/akonadi/cmake_modules_COPYING-CMAKE-SCRIPTS
 
 %files locales -f akonadi_knut_resource.lang -f libakonadi5.lang
 %defattr(-,root,root,-)
