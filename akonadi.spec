@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi
-Version  : 18.08.0
-Release  : 4
-URL      : https://download.kde.org/stable/applications/18.08.0/src/akonadi-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/akonadi-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/akonadi-18.08.0.tar.xz.sig
+Version  : 18.12.2
+Release  : 5
+URL      : https://download.kde.org/stable/applications/18.12.2/src/akonadi-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/akonadi-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/akonadi-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause LGPL-2.1
@@ -22,16 +22,10 @@ BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules shared-mime-info
-BuildRequires : kcrash-dev
-BuildRequires : kdbusaddons-dev
-BuildRequires : kdesignerplugin-dev
-BuildRequires : kitemmodels-dev
-BuildRequires : kwindowsystem-dev
 BuildRequires : libxml2-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(sqlite3)
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : shared-mime-info
 
 %description
 Akonadi
@@ -98,14 +92,14 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-18.08.0
+%setup -q -n akonadi-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543344796
+export SOURCE_DATE_EPOCH=1549853934
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -120,7 +114,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1543344796
+export SOURCE_DATE_EPOCH=1549853934
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/COPYING.LIB
@@ -203,6 +197,8 @@ popd
 /usr/include/KF5/AkonadiAgentBase/resourcesettings.h
 /usr/include/KF5/AkonadiAgentBase/transportresourcebase.h
 /usr/include/KF5/AkonadiCore/AbstractDifferencesReporter
+/usr/include/KF5/AkonadiCore/AgentConfigurationBase
+/usr/include/KF5/AkonadiCore/AgentConfigurationFactoryBase
 /usr/include/KF5/AkonadiCore/AgentFilterProxyModel
 /usr/include/KF5/AkonadiCore/AgentInstance
 /usr/include/KF5/AkonadiCore/AgentInstanceCreateJob
@@ -305,6 +301,8 @@ popd
 /usr/include/KF5/AkonadiCore/UnlinkJob
 /usr/include/KF5/AkonadiCore/VectorHelper
 /usr/include/KF5/AkonadiCore/abstractdifferencesreporter.h
+/usr/include/KF5/AkonadiCore/agentconfigurationbase.h
+/usr/include/KF5/AkonadiCore/agentconfigurationfactorybase.h
 /usr/include/KF5/AkonadiCore/agentfilterproxymodel.h
 /usr/include/KF5/AkonadiCore/agentinstance.h
 /usr/include/KF5/AkonadiCore/agentinstancecreatejob.h
@@ -410,6 +408,8 @@ popd
 /usr/include/KF5/AkonadiCore/unlinkjob.h
 /usr/include/KF5/AkonadiCore/vectorhelper.h
 /usr/include/KF5/AkonadiWidgets/AgentActionManager
+/usr/include/KF5/AkonadiWidgets/AgentConfigurationDialog
+/usr/include/KF5/AkonadiWidgets/AgentConfigurationWidget
 /usr/include/KF5/AkonadiWidgets/AgentInstanceWidget
 /usr/include/KF5/AkonadiWidgets/AgentTypeDialog
 /usr/include/KF5/AkonadiWidgets/AgentTypeWidget
@@ -436,6 +436,8 @@ popd
 /usr/include/KF5/AkonadiWidgets/TagSelectionDialog
 /usr/include/KF5/AkonadiWidgets/TagWidget
 /usr/include/KF5/AkonadiWidgets/agentactionmanager.h
+/usr/include/KF5/AkonadiWidgets/agentconfigurationdialog.h
+/usr/include/KF5/AkonadiWidgets/agentconfigurationwidget.h
 /usr/include/KF5/AkonadiWidgets/agentinstancewidget.h
 /usr/include/KF5/AkonadiWidgets/agenttypedialog.h
 /usr/include/KF5/AkonadiWidgets/agenttypewidget.h
@@ -504,15 +506,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.9.0
+/usr/lib64/libKF5AkonadiAgentBase.so.5.10.2
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.9.0
+/usr/lib64/libKF5AkonadiCore.so.5.10.2
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.9.0
+/usr/lib64/libKF5AkonadiPrivate.so.5.10.2
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.9.0
+/usr/lib64/libKF5AkonadiWidgets.so.5.10.2
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.9.0
+/usr/lib64/libKF5AkonadiXml.so.5.10.2
 /usr/lib64/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
