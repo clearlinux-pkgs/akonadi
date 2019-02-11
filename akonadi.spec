@@ -6,7 +6,7 @@
 #
 Name     : akonadi
 Version  : 18.12.2
-Release  : 5
+Release  : 6
 URL      : https://download.kde.org/stable/applications/18.12.2/src/akonadi-18.12.2.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.2/src/akonadi-18.12.2.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.2/src/akonadi-18.12.2.tar.xz.sig
@@ -99,11 +99,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549853934
+export SOURCE_DATE_EPOCH=1549856698
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %check
@@ -114,7 +114,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1549853934
+export SOURCE_DATE_EPOCH=1549856698
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/COPYING.LIB
