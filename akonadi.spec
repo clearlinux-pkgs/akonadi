@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi
-Version  : 18.12.3
-Release  : 11
-URL      : https://download.kde.org/stable/applications/18.12.3/src/akonadi-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/akonadi-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/akonadi-18.12.3.tar.xz.sig
+Version  : 19.04.0
+Release  : 12
+URL      : https://download.kde.org/stable/applications/19.04.0/src/akonadi-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/akonadi-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/akonadi-19.04.0.tar.xz.sig
 Summary  : PIM layer, which provides an asynchronous API to access all kind of PIM data
 Group    : Development/Tools
-License  : BSD-3-Clause LGPL-2.1
+License  : BSD-3-Clause BSL-1.0 LGPL-2.1
 Requires: akonadi-bin = %{version}-%{release}
 Requires: akonadi-data = %{version}-%{release}
 Requires: akonadi-lib = %{version}-%{release}
@@ -26,16 +26,11 @@ BuildRequires : libxml2-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(sqlite3)
 BuildRequires : qtbase-dev mesa-dev
-Patch1: 0001-Fix-a-regression-when-updating-attributes.patch
-Patch2: 0002-Fix-collection-detaching-at-the-wrong-time-in-attrib.patch
 
 %description
-Akonadi
+Optional
 ========
-What is Akonadi?
-------------------
-Akonadi is a PIM layer, which provides an asynchronous API to access all kind
-of PIM data (e.g. mails, contacts, events, todos etc.).
+A single-header header-only library for representing optional (nullable) objects for C++14 (and C++11 to some extent) and passing them by value. This is the reference implementation of proposal N3793 (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3793.html). Optional is now accepted into Library Fundamentals Technical Specification (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3848.html). The interface is based on Fernando Cacciola's Boost.Optional library (see http://www.boost.org/doc/libs/1_52_0/libs/optional/doc/html/index.html)
 
 %package bin
 Summary: bin components for the akonadi package.
@@ -95,16 +90,14 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-18.12.3
-%patch1 -p1
-%patch2 -p1
+%setup -q -n akonadi-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555313333
+export SOURCE_DATE_EPOCH=1555676639
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -119,11 +112,14 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1555313333
+export SOURCE_DATE_EPOCH=1555676639
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/COPYING.LIB
 cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/cmake_modules_COPYING-CMAKE-SCRIPTS
+cp src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/src_3rdparty_Optional_LICENSE
+cp src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/src_3rdparty_Optional_LICENSE_1_0.txt
+cp src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/src_3rdparty_Optional_copyright.txt
 pushd clr-build
 %make_install
 popd
@@ -270,7 +266,6 @@ popd
 /usr/include/KF5/AkonadiCore/PartFetcher
 /usr/include/KF5/AkonadiCore/PersistentSearchAttribute
 /usr/include/KF5/AkonadiCore/Pop3ResourceAttribute
-/usr/include/KF5/AkonadiCore/QuotaColorProxyModel
 /usr/include/KF5/AkonadiCore/RecursiveCollectionFilterProxyModel
 /usr/include/KF5/AkonadiCore/RecursiveItemFetchJob
 /usr/include/KF5/AkonadiCore/Relation
@@ -377,7 +372,6 @@ popd
 /usr/include/KF5/AkonadiCore/persistentsearchattribute.h
 /usr/include/KF5/AkonadiCore/pop3resourceattribute.h
 /usr/include/KF5/AkonadiCore/qtest_akonadi.h
-/usr/include/KF5/AkonadiCore/quotacolorproxymodel.h
 /usr/include/KF5/AkonadiCore/recursivecollectionfilterproxymodel.h
 /usr/include/KF5/AkonadiCore/recursiveitemfetchjob.h
 /usr/include/KF5/AkonadiCore/relation.h
@@ -432,7 +426,6 @@ popd
 /usr/include/KF5/AkonadiWidgets/EntityTreeView
 /usr/include/KF5/AkonadiWidgets/ItemView
 /usr/include/KF5/AkonadiWidgets/ManageAccountWidget
-/usr/include/KF5/AkonadiWidgets/RenameFavoriteDialog
 /usr/include/KF5/AkonadiWidgets/StandardActionManager
 /usr/include/KF5/AkonadiWidgets/SubscriptionDialog
 /usr/include/KF5/AkonadiWidgets/TagEditWidget
@@ -461,7 +454,6 @@ popd
 /usr/include/KF5/AkonadiWidgets/etmviewstatesaver.h
 /usr/include/KF5/AkonadiWidgets/itemview.h
 /usr/include/KF5/AkonadiWidgets/manageaccountwidget.h
-/usr/include/KF5/AkonadiWidgets/renamefavoritedialog.h
 /usr/include/KF5/AkonadiWidgets/standardactionmanager.h
 /usr/include/KF5/AkonadiWidgets/subscriptiondialog.h
 /usr/include/KF5/AkonadiWidgets/tageditwidget.h
@@ -511,15 +503,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.10.3
+/usr/lib64/libKF5AkonadiAgentBase.so.5.11.0
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.10.3
+/usr/lib64/libKF5AkonadiCore.so.5.11.0
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.10.3
+/usr/lib64/libKF5AkonadiPrivate.so.5.11.0
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.10.3
+/usr/lib64/libKF5AkonadiWidgets.so.5.11.0
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.10.3
+/usr/lib64/libKF5AkonadiXml.so.5.11.0
 /usr/lib64/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
@@ -528,6 +520,9 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/akonadi/COPYING.LIB
 /usr/share/package-licenses/akonadi/cmake_modules_COPYING-CMAKE-SCRIPTS
+/usr/share/package-licenses/akonadi/src_3rdparty_Optional_LICENSE
+/usr/share/package-licenses/akonadi/src_3rdparty_Optional_LICENSE_1_0.txt
+/usr/share/package-licenses/akonadi/src_3rdparty_Optional_copyright.txt
 
 %files locales -f akonadi_knut_resource.lang -f libakonadi5.lang
 %defattr(-,root,root,-)
