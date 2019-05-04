@@ -6,11 +6,11 @@
 #
 Name     : akonadi
 Version  : 19.04.0
-Release  : 12
+Release  : 13
 URL      : https://download.kde.org/stable/applications/19.04.0/src/akonadi-19.04.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/19.04.0/src/akonadi-19.04.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/19.04.0/src/akonadi-19.04.0.tar.xz.sig
-Summary  : PIM layer, which provides an asynchronous API to access all kind of PIM data
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause BSL-1.0 LGPL-2.1
 Requires: akonadi-bin = %{version}-%{release}
@@ -28,9 +28,12 @@ BuildRequires : pkgconfig(sqlite3)
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-Optional
+Akonadi
 ========
-A single-header header-only library for representing optional (nullable) objects for C++14 (and C++11 to some extent) and passing them by value. This is the reference implementation of proposal N3793 (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3793.html). Optional is now accepted into Library Fundamentals Technical Specification (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3848.html). The interface is based on Fernando Cacciola's Boost.Optional library (see http://www.boost.org/doc/libs/1_52_0/libs/optional/doc/html/index.html)
+What is Akonadi?
+------------------
+Akonadi is a PIM layer, which provides an asynchronous API to access all kind
+of PIM data (e.g. mails, contacts, events, todos etc.).
 
 %package bin
 Summary: bin components for the akonadi package.
@@ -97,11 +100,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555676639
+export SOURCE_DATE_EPOCH=1556944359
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %check
@@ -112,7 +116,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1555676639
+export SOURCE_DATE_EPOCH=1556944359
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/COPYING.LIB
