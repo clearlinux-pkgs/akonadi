@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi
-Version  : 19.04.2
-Release  : 17
-URL      : https://download.kde.org/stable/applications/19.04.2/src/akonadi-19.04.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.2/src/akonadi-19.04.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.2/src/akonadi-19.04.2.tar.xz.sig
+Version  : 19.04.3
+Release  : 18
+URL      : https://download.kde.org/stable/applications/19.04.3/src/akonadi-19.04.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.3/src/akonadi-19.04.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.3/src/akonadi-19.04.3.tar.xz.sig
 Summary  : PIM layer, which provides an asynchronous API to access all kind of PIM data
 Group    : Development/Tools
 License  : BSD-3-Clause BSL-1.0 LGPL-2.1
@@ -91,16 +91,17 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-19.04.2
+%setup -q -n akonadi-19.04.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1559875239
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562850508
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -109,18 +110,18 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1559875239
+export SOURCE_DATE_EPOCH=1562850508
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/COPYING.LIB
@@ -511,15 +512,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.11.2
+/usr/lib64/libKF5AkonadiAgentBase.so.5.11.3
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.11.2
+/usr/lib64/libKF5AkonadiCore.so.5.11.3
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.11.2
+/usr/lib64/libKF5AkonadiPrivate.so.5.11.3
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.11.2
+/usr/lib64/libKF5AkonadiWidgets.so.5.11.3
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.11.2
+/usr/lib64/libKF5AkonadiXml.so.5.11.3
 /usr/lib64/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
