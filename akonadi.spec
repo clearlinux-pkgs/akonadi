@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi
-Version  : 19.04.3
-Release  : 18
-URL      : https://download.kde.org/stable/applications/19.04.3/src/akonadi-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/akonadi-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/akonadi-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 19
+URL      : https://download.kde.org/stable/applications/19.08.0/src/akonadi-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/akonadi-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/akonadi-19.08.0.tar.xz.sig
 Summary  : PIM layer, which provides an asynchronous API to access all kind of PIM data
 Group    : Development/Tools
 License  : BSD-3-Clause BSL-1.0 LGPL-2.1
@@ -91,16 +91,17 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-19.04.3
+%setup -q -n akonadi-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562850508
+export SOURCE_DATE_EPOCH=1565887317
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -121,7 +122,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1562850508
+export SOURCE_DATE_EPOCH=1565887317
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/COPYING.LIB
@@ -185,8 +186,8 @@ popd
 /usr/share/kf5/akonadi/kcfg2dbus.xsl
 /usr/share/kf5/akonadi_knut_resource/knut-template.xml
 /usr/share/mime-packages/akonadi-mime.xml
-/usr/share/xdg/akonadi.categories
-/usr/share/xdg/akonadi.renamecategories
+/usr/share/qlogging-categories5/akonadi.categories
+/usr/share/qlogging-categories5/akonadi.renamecategories
 /usr/share/xdg/akonadi/mysql-global-mobile.conf
 /usr/share/xdg/akonadi/mysql-global.conf
 
@@ -512,15 +513,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.11.3
+/usr/lib64/libKF5AkonadiAgentBase.so.5.12.0
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.11.3
+/usr/lib64/libKF5AkonadiCore.so.5.12.0
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.11.3
+/usr/lib64/libKF5AkonadiPrivate.so.5.12.0
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.11.3
+/usr/lib64/libKF5AkonadiWidgets.so.5.12.0
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.11.3
+/usr/lib64/libKF5AkonadiXml.so.5.12.0
 /usr/lib64/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
