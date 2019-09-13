@@ -6,7 +6,7 @@
 #
 Name     : akonadi
 Version  : 19.08.1
-Release  : 20
+Release  : 21
 URL      : https://download.kde.org/stable/applications/19.08.1/src/akonadi-19.08.1.tar.xz
 Source0  : https://download.kde.org/stable/applications/19.08.1/src/akonadi-19.08.1.tar.xz
 Source1 : https://download.kde.org/stable/applications/19.08.1/src/akonadi-19.08.1.tar.xz.sig
