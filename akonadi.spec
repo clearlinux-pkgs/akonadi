@@ -6,11 +6,11 @@
 #
 Name     : akonadi
 Version  : 19.08.2
-Release  : 22
+Release  : 23
 URL      : https://download.kde.org/stable/applications/19.08.2/src/akonadi-19.08.2.tar.xz
 Source0  : https://download.kde.org/stable/applications/19.08.2/src/akonadi-19.08.2.tar.xz
 Source1 : https://download.kde.org/stable/applications/19.08.2/src/akonadi-19.08.2.tar.xz.sig
-Summary  : PIM layer, which provides an asynchronous API to access all kind of PIM data
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause BSL-1.0 LGPL-2.1
 Requires: akonadi-bin = %{version}-%{release}
@@ -28,9 +28,12 @@ BuildRequires : pkgconfig(sqlite3)
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-Optional
+Akonadi
 ========
-A single-header header-only library for representing optional (nullable) objects for C++14 (and C++11 to some extent) and passing them by value. This is the reference implementation of proposal N3793 (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3793.html). Optional is now accepted into Library Fundamentals Technical Specification (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3848.html). The interface is based on Fernando Cacciola's Boost.Optional library (see http://www.boost.org/doc/libs/1_52_0/libs/optional/doc/html/index.html)
+What is Akonadi?
+------------------
+Akonadi is a PIM layer, which provides an asynchronous API to access all kind
+of PIM data (e.g. mails, contacts, events, todos etc.).
 
 %package bin
 Summary: bin components for the akonadi package.
@@ -57,7 +60,6 @@ Requires: akonadi-lib = %{version}-%{release}
 Requires: akonadi-bin = %{version}-%{release}
 Requires: akonadi-data = %{version}-%{release}
 Provides: akonadi-devel = %{version}-%{release}
-Requires: akonadi = %{version}-%{release}
 Requires: akonadi = %{version}-%{release}
 
 %description dev
@@ -98,10 +100,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570729103
+export SOURCE_DATE_EPOCH=1571524326
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -110,7 +111,7 @@ export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
-%cmake ..
+%cmake .. -DDATABASE_BACKEND=SQLITE
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
@@ -122,14 +123,14 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1570729103
+export SOURCE_DATE_EPOCH=1571524326
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/COPYING.LIB
-cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/cmake_modules_COPYING-CMAKE-SCRIPTS
-cp src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/src_3rdparty_Optional_LICENSE
-cp src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/src_3rdparty_Optional_LICENSE_1_0.txt
-cp src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/src_3rdparty_Optional_copyright.txt
+cp %{_builddir}/akonadi-19.08.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/akonadi-19.08.2/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/akonadi-19.08.2/src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+cp %{_builddir}/akonadi-19.08.2/src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+cp %{_builddir}/akonadi-19.08.2/src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
 pushd clr-build
 %make_install
 popd
@@ -528,11 +529,10 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/akonadi/COPYING.LIB
-/usr/share/package-licenses/akonadi/cmake_modules_COPYING-CMAKE-SCRIPTS
-/usr/share/package-licenses/akonadi/src_3rdparty_Optional_LICENSE
-/usr/share/package-licenses/akonadi/src_3rdparty_Optional_LICENSE_1_0.txt
-/usr/share/package-licenses/akonadi/src_3rdparty_Optional_copyright.txt
+/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
+/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
 
 %files locales -f akonadi_knut_resource.lang -f libakonadi5.lang
 %defattr(-,root,root,-)
