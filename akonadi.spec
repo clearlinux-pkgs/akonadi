@@ -6,7 +6,7 @@
 #
 Name     : akonadi
 Version  : 19.08.2
-Release  : 23
+Release  : 24
 URL      : https://download.kde.org/stable/applications/19.08.2/src/akonadi-19.08.2.tar.xz
 Source0  : https://download.kde.org/stable/applications/19.08.2/src/akonadi-19.08.2.tar.xz
 Source1 : https://download.kde.org/stable/applications/19.08.2/src/akonadi-19.08.2.tar.xz.sig
@@ -100,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571524326
+export SOURCE_DATE_EPOCH=1571680921
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -111,7 +111,7 @@ export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
-%cmake .. -DDATABASE_BACKEND=SQLITE
+%cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
@@ -123,7 +123,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1571524326
+export SOURCE_DATE_EPOCH=1571680921
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp %{_builddir}/akonadi-19.08.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
