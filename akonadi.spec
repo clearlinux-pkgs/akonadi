@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi
-Version  : 19.08.2
-Release  : 25
-URL      : https://download.kde.org/stable/applications/19.08.2/src/akonadi-19.08.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.2/src/akonadi-19.08.2.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.2/src/akonadi-19.08.2.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 19.08.3
+Release  : 26
+URL      : https://download.kde.org/stable/applications/19.08.3/src/akonadi-19.08.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.3/src/akonadi-19.08.3.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.3/src/akonadi-19.08.3.tar.xz.sig
+Summary  : PIM layer, which provides an asynchronous API to access all kind of PIM data
 Group    : Development/Tools
 License  : BSD-3-Clause BSL-1.0 LGPL-2.1
 Requires: akonadi-bin = %{version}-%{release}
@@ -28,12 +28,9 @@ BuildRequires : pkgconfig(sqlite3)
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-Akonadi
+Optional
 ========
-What is Akonadi?
-------------------
-Akonadi is a PIM layer, which provides an asynchronous API to access all kind
-of PIM data (e.g. mails, contacts, events, todos etc.).
+A single-header header-only library for representing optional (nullable) objects for C++14 (and C++11 to some extent) and passing them by value. This is the reference implementation of proposal N3793 (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3793.html). Optional is now accepted into Library Fundamentals Technical Specification (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3848.html). The interface is based on Fernando Cacciola's Boost.Optional library (see http://www.boost.org/doc/libs/1_52_0/libs/optional/doc/html/index.html)
 
 %package bin
 Summary: bin components for the akonadi package.
@@ -60,6 +57,7 @@ Requires: akonadi-lib = %{version}-%{release}
 Requires: akonadi-bin = %{version}-%{release}
 Requires: akonadi-data = %{version}-%{release}
 Provides: akonadi-devel = %{version}-%{release}
+Requires: akonadi = %{version}-%{release}
 Requires: akonadi = %{version}-%{release}
 
 %description dev
@@ -93,16 +91,17 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-19.08.2
+%setup -q -n akonadi-19.08.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571680921
+export SOURCE_DATE_EPOCH=1573154088
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -123,14 +122,14 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1571680921
+export SOURCE_DATE_EPOCH=1573154088
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
-cp %{_builddir}/akonadi-19.08.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/akonadi-19.08.2/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
-cp %{_builddir}/akonadi-19.08.2/src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-cp %{_builddir}/akonadi-19.08.2/src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-cp %{_builddir}/akonadi-19.08.2/src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
+cp %{_builddir}/akonadi-19.08.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/akonadi-19.08.3/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/akonadi-19.08.3/src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+cp %{_builddir}/akonadi-19.08.3/src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+cp %{_builddir}/akonadi-19.08.3/src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
 pushd clr-build
 %make_install
 popd
@@ -514,15 +513,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.12.2
+/usr/lib64/libKF5AkonadiAgentBase.so.5.12.3
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.12.2
+/usr/lib64/libKF5AkonadiCore.so.5.12.3
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.12.2
+/usr/lib64/libKF5AkonadiPrivate.so.5.12.3
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.12.2
+/usr/lib64/libKF5AkonadiWidgets.so.5.12.3
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.12.2
+/usr/lib64/libKF5AkonadiXml.so.5.12.3
 /usr/lib64/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
