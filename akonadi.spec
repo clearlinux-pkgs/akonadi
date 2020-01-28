@@ -6,7 +6,7 @@
 #
 Name     : akonadi
 Version  : 19.12.1
-Release  : 30
+Release  : 31
 URL      : https://download.kde.org/stable/release-service/19.12.1/src/akonadi-19.12.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/19.12.1/src/akonadi-19.12.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/19.12.1/src/akonadi-19.12.1.tar.xz.sig
