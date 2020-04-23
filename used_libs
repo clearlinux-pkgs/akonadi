@@ -3,7 +3,6 @@ libKF5ConfigGui.so.5
 libKF5ConfigWidgets.so.5
 libKF5CoreAddons.so.5
 libKF5Crash.so.5
-libKF5DBusAddons.so.5
 libKF5I18n.so.5
 libKF5IconThemes.so.5
 libKF5ItemModels.so.5
@@ -19,6 +18,7 @@ libQt5Widgets.so.5
 libQt5Xml.so.5
 libc.so.6
 libgcc_s.so.1
+libm.so.6
 libsqlite3.so.0
 libstdc++.so.6
 libxml2.so.2

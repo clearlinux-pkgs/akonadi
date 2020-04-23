@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi
-Version  : 19.12.3
-Release  : 35
-URL      : https://download.kde.org/stable/release-service/19.12.3/src/akonadi-19.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.3/src/akonadi-19.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.3/src/akonadi-19.12.3.tar.xz.sig
+Version  : 20.04.0
+Release  : 36
+URL      : https://download.kde.org/stable/release-service/20.04.0/src/akonadi-20.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.0/src/akonadi-20.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.0/src/akonadi-20.04.0.tar.xz.sig
 Summary  : PIM layer, which provides an asynchronous API to access all kind of PIM data
 Group    : Development/Tools
 License  : BSD-3-Clause BSL-1.0 LGPL-2.1
@@ -91,15 +91,15 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-19.12.3
-cd %{_builddir}/akonadi-19.12.3
+%setup -q -n akonadi-20.04.0
+cd %{_builddir}/akonadi-20.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583429610
+export SOURCE_DATE_EPOCH=1587669034
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -123,14 +123,14 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1583429610
+export SOURCE_DATE_EPOCH=1587669034
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
-cp %{_builddir}/akonadi-19.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/akonadi-19.12.3/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
-cp %{_builddir}/akonadi-19.12.3/src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-cp %{_builddir}/akonadi-19.12.3/src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-cp %{_builddir}/akonadi-19.12.3/src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
+cp %{_builddir}/akonadi-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/akonadi-20.04.0/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/akonadi-20.04.0/src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+cp %{_builddir}/akonadi-20.04.0/src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+cp %{_builddir}/akonadi-20.04.0/src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
 pushd clr-build
 %make_install
 popd
@@ -520,15 +520,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.13.3
+/usr/lib64/libKF5AkonadiAgentBase.so.5.14.0
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.13.3
+/usr/lib64/libKF5AkonadiCore.so.5.14.0
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.13.3
+/usr/lib64/libKF5AkonadiPrivate.so.5.14.0
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.13.3
+/usr/lib64/libKF5AkonadiWidgets.so.5.14.0
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.13.3
+/usr/lib64/libKF5AkonadiXml.so.5.14.0
 /usr/lib64/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/designer/akonadiwidgets.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
