@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi
-Version  : 20.04.0
-Release  : 36
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/akonadi-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/akonadi-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/akonadi-20.04.0.tar.xz.sig
-Summary  : PIM layer, which provides an asynchronous API to access all kind of PIM data
+Version  : 20.04.1
+Release  : 37
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/akonadi-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/akonadi-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/akonadi-20.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause BSL-1.0 LGPL-2.1
 Requires: akonadi-bin = %{version}-%{release}
@@ -18,19 +18,38 @@ Requires: akonadi-data = %{version}-%{release}
 Requires: akonadi-lib = %{version}-%{release}
 Requires: akonadi-license = %{version}-%{release}
 Requires: akonadi-locales = %{version}-%{release}
+BuildRequires : akonadi-dev
 BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules shared-mime-info
+BuildRequires : extra-cmake-modules-data
+BuildRequires : kconfig-dev
+BuildRequires : kconfigwidgets-dev
+BuildRequires : kcoreaddons-dev
+BuildRequires : kcrash-dev
+BuildRequires : ki18n-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kio-dev
+BuildRequires : kitemmodels-dev
+BuildRequires : kitemviews-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : libxml2-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(sqlite3)
+BuildRequires : qtbase-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : qttools-dev
 
 %description
-Optional
+Akonadi
 ========
-A single-header header-only library for representing optional (nullable) objects for C++14 (and C++11 to some extent) and passing them by value. This is the reference implementation of proposal N3793 (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3793.html). Optional is now accepted into Library Fundamentals Technical Specification (see http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3848.html). The interface is based on Fernando Cacciola's Boost.Optional library (see http://www.boost.org/doc/libs/1_52_0/libs/optional/doc/html/index.html)
+What is Akonadi?
+------------------
+Akonadi is a PIM layer, which provides an asynchronous API to access all kind
+of PIM data (e.g. mails, contacts, events, todos etc.).
 
 %package bin
 Summary: bin components for the akonadi package.
@@ -57,7 +76,6 @@ Requires: akonadi-lib = %{version}-%{release}
 Requires: akonadi-bin = %{version}-%{release}
 Requires: akonadi-data = %{version}-%{release}
 Provides: akonadi-devel = %{version}-%{release}
-Requires: akonadi = %{version}-%{release}
 Requires: akonadi = %{version}-%{release}
 
 %description dev
@@ -91,25 +109,24 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-20.04.0
-cd %{_builddir}/akonadi-20.04.0
+%setup -q -n akonadi-20.04.1
+cd %{_builddir}/akonadi-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587669034
+export SOURCE_DATE_EPOCH=1589825846
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
@@ -123,14 +140,14 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1587669034
+export SOURCE_DATE_EPOCH=1589825846
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
-cp %{_builddir}/akonadi-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/akonadi-20.04.0/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
-cp %{_builddir}/akonadi-20.04.0/src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-cp %{_builddir}/akonadi-20.04.0/src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-cp %{_builddir}/akonadi-20.04.0/src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
+cp %{_builddir}/akonadi-20.04.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/akonadi-20.04.1/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/akonadi-20.04.1/src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+cp %{_builddir}/akonadi-20.04.1/src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+cp %{_builddir}/akonadi-20.04.1/src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
 pushd clr-build
 %make_install
 popd
@@ -520,15 +537,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.14.0
+/usr/lib64/libKF5AkonadiAgentBase.so.5.14.1
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.14.0
+/usr/lib64/libKF5AkonadiCore.so.5.14.1
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.14.0
+/usr/lib64/libKF5AkonadiPrivate.so.5.14.1
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.14.0
+/usr/lib64/libKF5AkonadiWidgets.so.5.14.1
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.14.0
+/usr/lib64/libKF5AkonadiXml.so.5.14.1
 /usr/lib64/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/designer/akonadiwidgets.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
