@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi
-Version  : 20.04.2
-Release  : 40
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/akonadi-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/akonadi-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/akonadi-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 41
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/akonadi-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/akonadi-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/akonadi-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause BSL-1.0 LGPL-2.1
+License  : BSD-3-Clause GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 MIT
 Requires: akonadi-bin = %{version}-%{release}
 Requires: akonadi-data = %{version}-%{release}
 Requires: akonadi-lib = %{version}-%{release}
@@ -43,12 +43,9 @@ BuildRequires : qtbase-dev mesa-dev
 BuildRequires : qttools-dev
 
 %description
-Akonadi
-========
-What is Akonadi?
-------------------
-Akonadi is a PIM layer, which provides an asynchronous API to access all kind
-of PIM data (e.g. mails, contacts, events, todos etc.).
+This is a sliglty adjusted version of the QSQLITE driver. Install this driver
+somewhere in the QT_PLUGIN_PATH and use it in akonadi by setting the driver
+to QSQLITE3.
 
 %package bin
 Summary: bin components for the akonadi package.
@@ -108,15 +105,15 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-20.04.2
-cd %{_builddir}/akonadi-20.04.2
+%setup -q -n akonadi-20.08.0
+cd %{_builddir}/akonadi-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591887136
+export SOURCE_DATE_EPOCH=1597731399
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -128,7 +125,7 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %check
@@ -139,14 +136,21 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1591887136
+export SOURCE_DATE_EPOCH=1597731399
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
-cp %{_builddir}/akonadi-20.04.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/akonadi-20.04.2/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
-cp %{_builddir}/akonadi-20.04.2/src/3rdparty/Optional/LICENSE %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-cp %{_builddir}/akonadi-20.04.2/src/3rdparty/Optional/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-cp %{_builddir}/akonadi-20.04.2/src/3rdparty/Optional/copyright.txt %{buildroot}/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
+cp %{_builddir}/akonadi-20.08.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/akonadi/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/akonadi-20.08.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/akonadi/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/akonadi-20.08.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/akonadi-20.08.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/akonadi/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/akonadi-20.08.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/akonadi/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/akonadi-20.08.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/akonadi-20.08.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/akonadi/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/akonadi-20.08.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/akonadi-20.08.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/akonadi/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/akonadi-20.08.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/akonadi/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/akonadi-20.08.0/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/akonadi/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+cp %{_builddir}/akonadi-20.08.0/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
 pushd clr-build
 %make_install
 popd
@@ -236,7 +240,6 @@ popd
 /usr/include/KF5/AkonadiCore/AgentManager
 /usr/include/KF5/AkonadiCore/AgentType
 /usr/include/KF5/AkonadiCore/AgentTypeModel
-/usr/include/KF5/AkonadiCore/AkOptional
 /usr/include/KF5/AkonadiCore/Attribute
 /usr/include/KF5/AkonadiCore/AttributeFactory
 /usr/include/KF5/AkonadiCore/CachePolicy
@@ -280,7 +283,6 @@ popd
 /usr/include/KF5/AkonadiCore/ItemDeleteJob
 /usr/include/KF5/AkonadiCore/ItemFetchJob
 /usr/include/KF5/AkonadiCore/ItemFetchScope
-/usr/include/KF5/AkonadiCore/ItemModel
 /usr/include/KF5/AkonadiCore/ItemModifyJob
 /usr/include/KF5/AkonadiCore/ItemMonitor
 /usr/include/KF5/AkonadiCore/ItemMoveJob
@@ -291,11 +293,9 @@ popd
 /usr/include/KF5/AkonadiCore/LinkJob
 /usr/include/KF5/AkonadiCore/MimeTypeChecker
 /usr/include/KF5/AkonadiCore/Monitor
-/usr/include/KF5/AkonadiCore/NewMailNotifierAttribute
 /usr/include/KF5/AkonadiCore/NotificationSubscriber
 /usr/include/KF5/AkonadiCore/PartFetcher
 /usr/include/KF5/AkonadiCore/PersistentSearchAttribute
-/usr/include/KF5/AkonadiCore/Pop3ResourceAttribute
 /usr/include/KF5/AkonadiCore/RecursiveCollectionFilterProxyModel
 /usr/include/KF5/AkonadiCore/RecursiveItemFetchJob
 /usr/include/KF5/AkonadiCore/Relation
@@ -341,7 +341,6 @@ popd
 /usr/include/KF5/AkonadiCore/agenttype.h
 /usr/include/KF5/AkonadiCore/agenttypemodel.h
 /usr/include/KF5/AkonadiCore/akonadicore_export.h
-/usr/include/KF5/AkonadiCore/akoptional.h
 /usr/include/KF5/AkonadiCore/attribute.h
 /usr/include/KF5/AkonadiCore/attributefactory.h
 /usr/include/KF5/AkonadiCore/cachepolicy.h
@@ -386,7 +385,6 @@ popd
 /usr/include/KF5/AkonadiCore/itemdeletejob.h
 /usr/include/KF5/AkonadiCore/itemfetchjob.h
 /usr/include/KF5/AkonadiCore/itemfetchscope.h
-/usr/include/KF5/AkonadiCore/itemmodel.h
 /usr/include/KF5/AkonadiCore/itemmodifyjob.h
 /usr/include/KF5/AkonadiCore/itemmonitor.h
 /usr/include/KF5/AkonadiCore/itemmovejob.h
@@ -398,12 +396,9 @@ popd
 /usr/include/KF5/AkonadiCore/linkjob.h
 /usr/include/KF5/AkonadiCore/mimetypechecker.h
 /usr/include/KF5/AkonadiCore/monitor.h
-/usr/include/KF5/AkonadiCore/newmailnotifierattribute.h
 /usr/include/KF5/AkonadiCore/notificationsubscriber.h
-/usr/include/KF5/AkonadiCore/optional.hpp
 /usr/include/KF5/AkonadiCore/partfetcher.h
 /usr/include/KF5/AkonadiCore/persistentsearchattribute.h
-/usr/include/KF5/AkonadiCore/pop3resourceattribute.h
 /usr/include/KF5/AkonadiCore/qtest_akonadi.h
 /usr/include/KF5/AkonadiCore/recursivecollectionfilterproxymodel.h
 /usr/include/KF5/AkonadiCore/recursiveitemfetchjob.h
@@ -464,6 +459,7 @@ popd
 /usr/include/KF5/AkonadiWidgets/TagEditWidget
 /usr/include/KF5/AkonadiWidgets/TagManagementDialog
 /usr/include/KF5/AkonadiWidgets/TagSelectWidget
+/usr/include/KF5/AkonadiWidgets/TagSelectionComboBox
 /usr/include/KF5/AkonadiWidgets/TagSelectionDialog
 /usr/include/KF5/AkonadiWidgets/TagWidget
 /usr/include/KF5/AkonadiWidgets/agentactionmanager.h
@@ -491,6 +487,7 @@ popd
 /usr/include/KF5/AkonadiWidgets/subscriptiondialog.h
 /usr/include/KF5/AkonadiWidgets/tageditwidget.h
 /usr/include/KF5/AkonadiWidgets/tagmanagementdialog.h
+/usr/include/KF5/AkonadiWidgets/tagselectioncombobox.h
 /usr/include/KF5/AkonadiWidgets/tagselectiondialog.h
 /usr/include/KF5/AkonadiWidgets/tagselectwidget.h
 /usr/include/KF5/AkonadiWidgets/tagwidget.h
@@ -536,24 +533,30 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.14.2
+/usr/lib64/libKF5AkonadiAgentBase.so.5.15.0
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.14.2
+/usr/lib64/libKF5AkonadiCore.so.5.15.0
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.14.2
+/usr/lib64/libKF5AkonadiPrivate.so.5.15.0
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.14.2
+/usr/lib64/libKF5AkonadiWidgets.so.5.15.0
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.14.2
+/usr/lib64/libKF5AkonadiXml.so.5.15.0
 /usr/lib64/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/designer/akonadiwidgets.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/akonadi/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-/usr/share/package-licenses/akonadi/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-/usr/share/package-licenses/akonadi/a42074d90029e7ea8aa50377e7bc07e63278d9c1
+/usr/share/package-licenses/akonadi/20079e8f79713dce80ab09774505773c926afa2a
+/usr/share/package-licenses/akonadi/2a638514c87c4923c0570c55822620fad56f2a33
+/usr/share/package-licenses/akonadi/3c3d7573e137d48253731c975ecf90d74cfa9efe
+/usr/share/package-licenses/akonadi/6091db0aead0d90182b93d3c0d09ba93d188f907
+/usr/share/package-licenses/akonadi/6f1f675aa5f6a2bbaa573b8343044b166be28399
+/usr/share/package-licenses/akonadi/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/akonadi/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+/usr/share/package-licenses/akonadi/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+/usr/share/package-licenses/akonadi/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 /usr/share/package-licenses/akonadi/ff3ed70db4739b3c6747c7f624fe2bad70802987
 
 %files locales -f akonadi_knut_resource.lang -f libakonadi5.lang
