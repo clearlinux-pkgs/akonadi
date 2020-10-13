@@ -6,7 +6,7 @@
 #
 Name     : akonadi
 Version  : 20.08.2
-Release  : 43
+Release  : 44
 URL      : https://download.kde.org/stable/release-service/20.08.2/src/akonadi-20.08.2.tar.xz
 Source0  : https://download.kde.org/stable/release-service/20.08.2/src/akonadi-20.08.2.tar.xz
 Source1  : https://download.kde.org/stable/release-service/20.08.2/src/akonadi-20.08.2.tar.xz.sig
@@ -113,7 +113,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1602621381
+export SOURCE_DATE_EPOCH=1602623017
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -136,7 +136,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1602621381
+export SOURCE_DATE_EPOCH=1602623017
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp %{_builddir}/akonadi-20.08.2/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/akonadi/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
