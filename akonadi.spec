@@ -6,7 +6,7 @@
 #
 Name     : akonadi
 Version  : 21.04.2
-Release  : 50
+Release  : 51
 URL      : https://download.kde.org/stable/release-service/21.04.2/src/akonadi-21.04.2.tar.xz
 Source0  : https://download.kde.org/stable/release-service/21.04.2/src/akonadi-21.04.2.tar.xz
 Source1  : https://download.kde.org/stable/release-service/21.04.2/src/akonadi-21.04.2.tar.xz.sig
