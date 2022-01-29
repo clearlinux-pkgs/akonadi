@@ -6,7 +6,7 @@
 #
 Name     : akonadi
 Version  : 21.12.1
-Release  : 58
+Release  : 59
 URL      : https://download.kde.org/stable/release-service/21.12.1/src/akonadi-21.12.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/21.12.1/src/akonadi-21.12.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/21.12.1/src/akonadi-21.12.1.tar.xz.sig
@@ -114,7 +114,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641934899
+export SOURCE_DATE_EPOCH=1643435181
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -137,7 +137,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1641934899
+export SOURCE_DATE_EPOCH=1643435181
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp %{_builddir}/akonadi-21.12.1/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/akonadi/29fb05b49e12a380545499938c4879440bd8851e
@@ -212,6 +212,8 @@ popd
 /usr/share/mime-packages/akonadi-mime.xml
 /usr/share/qlogging-categories5/akonadi.categories
 /usr/share/qlogging-categories5/akonadi.renamecategories
+/usr/share/xdg/akonadi/mysql-global-mobile.conf
+/usr/share/xdg/akonadi/mysql-global.conf
 
 %files dev
 %defattr(-,root,root,-)
