@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : akonadi
-Version  : 21.12.3
-Release  : 61
-URL      : https://download.kde.org/stable/release-service/21.12.3/src/akonadi-21.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.3/src/akonadi-21.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.3/src/akonadi-21.12.3.tar.xz.sig
+Version  : 22.04.0
+Release  : 62
+URL      : https://download.kde.org/stable/release-service/22.04.0/src/akonadi-22.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.0/src/akonadi-22.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.0/src/akonadi-22.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 MIT
@@ -18,7 +18,6 @@ Requires: akonadi-data = %{version}-%{release}
 Requires: akonadi-lib = %{version}-%{release}
 Requires: akonadi-license = %{version}-%{release}
 Requires: akonadi-locales = %{version}-%{release}
-BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules shared-mime-info
@@ -38,9 +37,6 @@ BuildRequires : kxmlgui-dev
 BuildRequires : libxml2-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(sqlite3)
-BuildRequires : qtbase-dev
-BuildRequires : qtbase-dev mesa-dev
-BuildRequires : qttools-dev
 BuildRequires : xz-dev
 
 %description
@@ -106,15 +102,15 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-21.12.3
-cd %{_builddir}/akonadi-21.12.3
+%setup -q -n akonadi-22.04.0
+cd %{_builddir}/akonadi-22.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1646526224
+export SOURCE_DATE_EPOCH=1650662015
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -137,23 +133,25 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1646526224
+export SOURCE_DATE_EPOCH=1650662015
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
-cp %{_builddir}/akonadi-21.12.3/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/akonadi/29fb05b49e12a380545499938c4879440bd8851e
-cp %{_builddir}/akonadi-21.12.3/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/akonadi/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/akonadi-21.12.3/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/akonadi/8287b608d3fa40ef401339fd907ca1260c964123
-cp %{_builddir}/akonadi-21.12.3/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/akonadi/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/akonadi-21.12.3/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/akonadi-21.12.3/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/akonadi/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/akonadi-21.12.3/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/akonadi/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/akonadi-21.12.3/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/akonadi-21.12.3/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/akonadi/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/akonadi-21.12.3/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi/6f1f675aa5f6a2bbaa573b8343044b166be28399
-cp %{_builddir}/akonadi-21.12.3/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/akonadi/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/akonadi-21.12.3/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/akonadi/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/akonadi-21.12.3/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/akonadi/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
-cp %{_builddir}/akonadi-21.12.3/metainfo.yaml.license %{buildroot}/usr/share/package-licenses/akonadi/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
+cp %{_builddir}/akonadi-22.04.0/.krazy.license %{buildroot}/usr/share/package-licenses/akonadi/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
+cp %{_builddir}/akonadi-22.04.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/akonadi/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/akonadi-22.04.0/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/akonadi/8287b608d3fa40ef401339fd907ca1260c964123
+cp %{_builddir}/akonadi-22.04.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/akonadi/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/akonadi-22.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/akonadi-22.04.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/akonadi/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/akonadi-22.04.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/akonadi/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/akonadi-22.04.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/akonadi-22.04.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/akonadi/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/akonadi-22.04.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/akonadi-22.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/akonadi/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/akonadi-22.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/akonadi/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/akonadi-22.04.0/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/akonadi/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+cp %{_builddir}/akonadi-22.04.0/README.md.license %{buildroot}/usr/share/package-licenses/akonadi/cadc9e08cb956c041f87922de84b9206d9bbffb2
+cp %{_builddir}/akonadi-22.04.0/metainfo.yaml.license %{buildroot}/usr/share/package-licenses/akonadi/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
+cp %{_builddir}/akonadi-22.04.0/src/.krazy.license %{buildroot}/usr/share/package-licenses/akonadi/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
 pushd clr-build
 %make_install
 popd
@@ -204,8 +202,6 @@ popd
 /usr/share/icons/hicolor/48x48/apps/akonadi.png
 /usr/share/icons/hicolor/64x64/apps/akonadi.png
 /usr/share/icons/hicolor/scalable/apps/akonadi.svgz
-/usr/share/kdevappwizard/templates/akonadiresource.tar.bz2
-/usr/share/kdevappwizard/templates/akonadiserializer.tar.bz2
 /usr/share/kf5/akonadi/akonadi-xml.xsd
 /usr/share/kf5/akonadi/kcfg2dbus.xsl
 /usr/share/kf5/akonadi_knut_resource/knut-template.xml
@@ -217,6 +213,20 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/usr/include/KF5/Akonadi/akonadi/private/akonadiprivate_export.h
+/usr/include/KF5/Akonadi/akonadi/private/capabilities_p.h
+/usr/include/KF5/Akonadi/akonadi/private/compressionstream_p.h
+/usr/include/KF5/Akonadi/akonadi/private/dbus_p.h
+/usr/include/KF5/Akonadi/akonadi/private/externalpartstorage_p.h
+/usr/include/KF5/Akonadi/akonadi/private/imapparser_p.h
+/usr/include/KF5/Akonadi/akonadi/private/imapset_p.h
+/usr/include/KF5/Akonadi/akonadi/private/instance_p.h
+/usr/include/KF5/Akonadi/akonadi/private/protocol_exception_p.h
+/usr/include/KF5/Akonadi/akonadi/private/protocol_gen.h
+/usr/include/KF5/Akonadi/akonadi/private/protocol_p.h
+/usr/include/KF5/Akonadi/akonadi/private/scope_p.h
+/usr/include/KF5/Akonadi/akonadi/private/standarddirs_p.h
+/usr/include/KF5/Akonadi/akonadi/private/tristate_p.h
 /usr/include/KF5/AkonadiAgentBase/Akonadi/AccountsIntegration
 /usr/include/KF5/AkonadiAgentBase/Akonadi/AgentBase
 /usr/include/KF5/AkonadiAgentBase/Akonadi/AgentSearchInterface
@@ -334,6 +344,7 @@ popd
 /usr/include/KF5/AkonadiCore/Akonadi/UnlinkJob
 /usr/include/KF5/AkonadiCore/Akonadi/VectorHelper
 /usr/include/KF5/AkonadiCore/akonadi/abstractdifferencesreporter.h
+/usr/include/KF5/AkonadiCore/akonadi/abstractsearchplugin.h
 /usr/include/KF5/AkonadiCore/akonadi/agentconfigurationbase.h
 /usr/include/KF5/AkonadiCore/akonadi/agentconfigurationfactorybase.h
 /usr/include/KF5/AkonadiCore/akonadi/agentfilterproxymodel.h
@@ -499,21 +510,6 @@ popd
 /usr/include/KF5/AkonadiXml/akonadi/xmlreader.h
 /usr/include/KF5/AkonadiXml/akonadi/xmlwritejob.h
 /usr/include/KF5/AkonadiXml/akonadi/xmlwriter.h
-/usr/include/KF5/akonadi/abstractsearchplugin.h
-/usr/include/KF5/akonadi/private/akonadiprivate_export.h
-/usr/include/KF5/akonadi/private/capabilities_p.h
-/usr/include/KF5/akonadi/private/compressionstream_p.h
-/usr/include/KF5/akonadi/private/dbus_p.h
-/usr/include/KF5/akonadi/private/externalpartstorage_p.h
-/usr/include/KF5/akonadi/private/imapparser_p.h
-/usr/include/KF5/akonadi/private/imapset_p.h
-/usr/include/KF5/akonadi/private/instance_p.h
-/usr/include/KF5/akonadi/private/protocol_exception_p.h
-/usr/include/KF5/akonadi/private/protocol_gen.h
-/usr/include/KF5/akonadi/private/protocol_p.h
-/usr/include/KF5/akonadi/private/scope_p.h
-/usr/include/KF5/akonadi/private/standarddirs_p.h
-/usr/include/KF5/akonadi/private/tristate_p.h
 /usr/include/KF5/akonadi_version.h
 /usr/lib64/cmake/KF5Akonadi/KF5AkonadiConfig.cmake
 /usr/lib64/cmake/KF5Akonadi/KF5AkonadiConfigVersion.cmake
@@ -533,15 +529,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.19.3
+/usr/lib64/libKF5AkonadiAgentBase.so.5.20.0
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.19.3
+/usr/lib64/libKF5AkonadiCore.so.5.20.0
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.19.3
+/usr/lib64/libKF5AkonadiPrivate.so.5.20.0
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.19.3
+/usr/lib64/libKF5AkonadiWidgets.so.5.20.0
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.19.3
+/usr/lib64/libKF5AkonadiXml.so.5.20.0
 /usr/lib64/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/designer/akonadiwidgets.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
@@ -549,7 +545,6 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/akonadi/20079e8f79713dce80ab09774505773c926afa2a
-/usr/share/package-licenses/akonadi/29fb05b49e12a380545499938c4879440bd8851e
 /usr/share/package-licenses/akonadi/2a638514c87c4923c0570c55822620fad56f2a33
 /usr/share/package-licenses/akonadi/3c3d7573e137d48253731c975ecf90d74cfa9efe
 /usr/share/package-licenses/akonadi/6091db0aead0d90182b93d3c0d09ba93d188f907
@@ -559,6 +554,7 @@ popd
 /usr/share/package-licenses/akonadi/8287b608d3fa40ef401339fd907ca1260c964123
 /usr/share/package-licenses/akonadi/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
 /usr/share/package-licenses/akonadi/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+/usr/share/package-licenses/akonadi/cadc9e08cb956c041f87922de84b9206d9bbffb2
 /usr/share/package-licenses/akonadi/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
 %files locales -f akonadi_knut_resource.lang -f libakonadi5.lang
