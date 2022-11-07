@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : akonadi
-Version  : 22.08.2
-Release  : 68
-URL      : https://download.kde.org/stable/release-service/22.08.2/src/akonadi-22.08.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.08.2/src/akonadi-22.08.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.08.2/src/akonadi-22.08.2.tar.xz.sig
+Version  : 22.08.3
+Release  : 69
+URL      : https://download.kde.org/stable/release-service/22.08.3/src/akonadi-22.08.3.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.08.3/src/akonadi-22.08.3.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.08.3/src/akonadi-22.08.3.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 MIT
@@ -105,15 +105,15 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-22.08.2
-cd %{_builddir}/akonadi-22.08.2
+%setup -q -n akonadi-22.08.3
+cd %{_builddir}/akonadi-22.08.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1665709823
+export SOURCE_DATE_EPOCH=1667863898
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -136,7 +136,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1665709823
+export SOURCE_DATE_EPOCH=1667863898
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp %{_builddir}/akonadi-%{version}/.krazy.license %{buildroot}/usr/share/package-licenses/akonadi/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4 || :
@@ -539,15 +539,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5AkonadiAgentBase.so.5
-/usr/lib64/libKF5AkonadiAgentBase.so.5.21.2
+/usr/lib64/libKF5AkonadiAgentBase.so.5.21.3
 /usr/lib64/libKF5AkonadiCore.so.5
-/usr/lib64/libKF5AkonadiCore.so.5.21.2
+/usr/lib64/libKF5AkonadiCore.so.5.21.3
 /usr/lib64/libKF5AkonadiPrivate.so.5
-/usr/lib64/libKF5AkonadiPrivate.so.5.21.2
+/usr/lib64/libKF5AkonadiPrivate.so.5.21.3
 /usr/lib64/libKF5AkonadiWidgets.so.5
-/usr/lib64/libKF5AkonadiWidgets.so.5.21.2
+/usr/lib64/libKF5AkonadiWidgets.so.5.21.3
 /usr/lib64/libKF5AkonadiXml.so.5
-/usr/lib64/libKF5AkonadiXml.so.5.21.2
+/usr/lib64/libKF5AkonadiXml.so.5.21.3
 /usr/lib64/qt5/plugins/designer/akonadiwidgets.so
 /usr/lib64/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
