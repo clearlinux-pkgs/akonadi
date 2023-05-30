@@ -7,7 +7,7 @@
 #
 Name     : akonadi
 Version  : 23.04.1
-Release  : 77
+Release  : 78
 URL      : https://download.kde.org/stable/release-service/23.04.1/src/akonadi-23.04.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.04.1/src/akonadi-23.04.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.04.1/src/akonadi-23.04.1.tar.xz.sig
@@ -106,7 +106,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684782686
+export SOURCE_DATE_EPOCH=1685475719
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -148,7 +148,7 @@ cd ../clr-build-avx2;
 make test || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1684782686
+export SOURCE_DATE_EPOCH=1685475719
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp %{_builddir}/akonadi-%{version}/.krazy.license %{buildroot}/usr/share/package-licenses/akonadi/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4 || :
@@ -245,11 +245,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5AkonadiAgentBase.so
-/V3/usr/lib64/libKPim5AkonadiCore.so
-/V3/usr/lib64/libKPim5AkonadiPrivate.so
-/V3/usr/lib64/libKPim5AkonadiWidgets.so
-/V3/usr/lib64/libKPim5AkonadiXml.so
 /usr/include/KPim5/Akonadi/akonadi/private/akonadiprivate_export.h
 /usr/include/KPim5/Akonadi/akonadi/private/capabilities_p.h
 /usr/include/KPim5/Akonadi/akonadi/private/compressionstream_p.h
@@ -576,15 +571,10 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5AkonadiAgentBase.so.5
 /V3/usr/lib64/libKPim5AkonadiAgentBase.so.5.23.1
-/V3/usr/lib64/libKPim5AkonadiCore.so.5
 /V3/usr/lib64/libKPim5AkonadiCore.so.5.23.1
-/V3/usr/lib64/libKPim5AkonadiPrivate.so.5
 /V3/usr/lib64/libKPim5AkonadiPrivate.so.5.23.1
-/V3/usr/lib64/libKPim5AkonadiWidgets.so.5
 /V3/usr/lib64/libKPim5AkonadiWidgets.so.5.23.1
-/V3/usr/lib64/libKPim5AkonadiXml.so.5
 /V3/usr/lib64/libKPim5AkonadiXml.so.5.23.1
 /V3/usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
