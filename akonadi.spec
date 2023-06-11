@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : akonadi
-Version  : 23.04.1
-Release  : 78
-URL      : https://download.kde.org/stable/release-service/23.04.1/src/akonadi-23.04.1.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.1/src/akonadi-23.04.1.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.1/src/akonadi-23.04.1.tar.xz.sig
+Version  : 23.04.2
+Release  : 79
+URL      : https://download.kde.org/stable/release-service/23.04.2/src/akonadi-23.04.2.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.04.2/src/akonadi-23.04.2.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.04.2/src/akonadi-23.04.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 MIT
@@ -98,15 +98,15 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-23.04.1
-cd %{_builddir}/akonadi-23.04.1
+%setup -q -n akonadi-23.04.2
+cd %{_builddir}/akonadi-23.04.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685475719
+export SOURCE_DATE_EPOCH=1686509589
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -148,7 +148,7 @@ cd ../clr-build-avx2;
 make test || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1685475719
+export SOURCE_DATE_EPOCH=1686509589
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp %{_builddir}/akonadi-%{version}/.krazy.license %{buildroot}/usr/share/package-licenses/akonadi/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4 || :
@@ -571,24 +571,24 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5AkonadiAgentBase.so.5.23.1
-/V3/usr/lib64/libKPim5AkonadiCore.so.5.23.1
-/V3/usr/lib64/libKPim5AkonadiPrivate.so.5.23.1
-/V3/usr/lib64/libKPim5AkonadiWidgets.so.5.23.1
-/V3/usr/lib64/libKPim5AkonadiXml.so.5.23.1
+/V3/usr/lib64/libKPim5AkonadiAgentBase.so.5.23.2
+/V3/usr/lib64/libKPim5AkonadiCore.so.5.23.2
+/V3/usr/lib64/libKPim5AkonadiPrivate.so.5.23.2
+/V3/usr/lib64/libKPim5AkonadiWidgets.so.5.23.2
+/V3/usr/lib64/libKPim5AkonadiXml.so.5.23.2
 /V3/usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
 /V3/usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
 /usr/lib64/libKPim5AkonadiAgentBase.so.5
-/usr/lib64/libKPim5AkonadiAgentBase.so.5.23.1
+/usr/lib64/libKPim5AkonadiAgentBase.so.5.23.2
 /usr/lib64/libKPim5AkonadiCore.so.5
-/usr/lib64/libKPim5AkonadiCore.so.5.23.1
+/usr/lib64/libKPim5AkonadiCore.so.5.23.2
 /usr/lib64/libKPim5AkonadiPrivate.so.5
-/usr/lib64/libKPim5AkonadiPrivate.so.5.23.1
+/usr/lib64/libKPim5AkonadiPrivate.so.5.23.2
 /usr/lib64/libKPim5AkonadiWidgets.so.5
-/usr/lib64/libKPim5AkonadiWidgets.so.5.23.1
+/usr/lib64/libKPim5AkonadiWidgets.so.5.23.2
 /usr/lib64/libKPim5AkonadiXml.so.5
-/usr/lib64/libKPim5AkonadiXml.so.5.23.1
+/usr/lib64/libKPim5AkonadiXml.so.5.23.2
 /usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /usr/lib64/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
