@@ -1,5 +1,5 @@
 PKG_NAME := akonadi
-URL = https://download.kde.org/stable/release-service/23.04.2/src/akonadi-23.04.2.tar.xz
+URL = https://download.kde.org/stable/release-service/23.04.3/src/akonadi-23.04.3.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
