@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : akonadi
-Version  : 23.04.3
-Release  : 80
-URL      : https://download.kde.org/stable/release-service/23.04.3/src/akonadi-23.04.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.3/src/akonadi-23.04.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.3/src/akonadi-23.04.3.tar.xz.sig
+Version  : 23.08.0
+Release  : 81
+URL      : https://download.kde.org/stable/release-service/23.08.0/src/akonadi-23.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.0/src/akonadi-23.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.0/src/akonadi-23.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 MIT
@@ -36,9 +36,15 @@ BuildRequires : xz-dev
 %define debug_package %{nil}
 
 %description
-This is a sliglty adjusted version of the QSQLITE driver. Install this driver
-somewhere in the QT_PLUGIN_PATH and use it in akonadi by setting the driver
-to QSQLITE3.
+How To Build This Template
+-=-=-=-=-=-=-=-=-=-=-=-=-=
+--- On Linux & similar:
+cd <project_name_path>
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=$MY_PREFIX -DCMAKE_BUILD_TYPE=Debug
+make
+make install or su -c 'make install'
 
 %package bin
 Summary: bin components for the akonadi package.
@@ -98,15 +104,15 @@ locales components for the akonadi package.
 
 
 %prep
-%setup -q -n akonadi-23.04.3
-cd %{_builddir}/akonadi-23.04.3
+%setup -q -n akonadi-23.08.0
+cd %{_builddir}/akonadi-23.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1688844157
+export SOURCE_DATE_EPOCH=1693001604
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -148,7 +154,7 @@ cd ../clr-build-avx2;
 make test || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1688844157
+export SOURCE_DATE_EPOCH=1693001604
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp %{_builddir}/akonadi-%{version}/.krazy.license %{buildroot}/usr/share/package-licenses/akonadi/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4 || :
@@ -291,6 +297,7 @@ popd
 /usr/include/KPim5/AkonadiCore/Akonadi/ChangeNotification
 /usr/include/KPim5/AkonadiCore/Akonadi/ChangeRecorder
 /usr/include/KPim5/AkonadiCore/Akonadi/Collection
+/usr/include/KPim5/AkonadiCore/Akonadi/CollectionAnnotationsAttribute
 /usr/include/KPim5/AkonadiCore/Akonadi/CollectionAttributesSynchronizationJob
 /usr/include/KPim5/AkonadiCore/Akonadi/CollectionColorAttribute
 /usr/include/KPim5/AkonadiCore/Akonadi/CollectionCopyJob
@@ -394,6 +401,7 @@ popd
 /usr/include/KPim5/AkonadiCore/akonadi/changenotification.h
 /usr/include/KPim5/AkonadiCore/akonadi/changerecorder.h
 /usr/include/KPim5/AkonadiCore/akonadi/collection.h
+/usr/include/KPim5/AkonadiCore/akonadi/collectionannotationsattribute.h
 /usr/include/KPim5/AkonadiCore/akonadi/collectionattributessynchronizationjob.h
 /usr/include/KPim5/AkonadiCore/akonadi/collectioncolorattribute.h
 /usr/include/KPim5/AkonadiCore/akonadi/collectioncopyjob.h
@@ -489,7 +497,7 @@ popd
 /usr/include/KPim5/AkonadiWidgets/Akonadi/AgentInstanceWidget
 /usr/include/KPim5/AkonadiWidgets/Akonadi/AgentTypeDialog
 /usr/include/KPim5/AkonadiWidgets/Akonadi/AgentTypeWidget
-/usr/include/KPim5/AkonadiWidgets/Akonadi/ClearCacheJob
+/usr/include/KPim5/AkonadiWidgets/Akonadi/ClearCacheFoldersJob
 /usr/include/KPim5/AkonadiWidgets/Akonadi/CollectionComboBox
 /usr/include/KPim5/AkonadiWidgets/Akonadi/CollectionDialog
 /usr/include/KPim5/AkonadiWidgets/Akonadi/CollectionMaintenancePage
@@ -518,7 +526,7 @@ popd
 /usr/include/KPim5/AkonadiWidgets/akonadi/agenttypedialog.h
 /usr/include/KPim5/AkonadiWidgets/akonadi/agenttypewidget.h
 /usr/include/KPim5/AkonadiWidgets/akonadi/akonadiwidgets_export.h
-/usr/include/KPim5/AkonadiWidgets/akonadi/clearcachejob.h
+/usr/include/KPim5/AkonadiWidgets/akonadi/clearcachefoldersjob.h
 /usr/include/KPim5/AkonadiWidgets/akonadi/collectioncombobox.h
 /usr/include/KPim5/AkonadiWidgets/akonadi/collectiondialog.h
 /usr/include/KPim5/AkonadiWidgets/akonadi/collectionmaintenancepage.h
@@ -571,27 +579,25 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5AkonadiAgentBase.so.5.23.3
-/V3/usr/lib64/libKPim5AkonadiCore.so.5.23.3
-/V3/usr/lib64/libKPim5AkonadiPrivate.so.5.23.3
-/V3/usr/lib64/libKPim5AkonadiWidgets.so.5.23.3
-/V3/usr/lib64/libKPim5AkonadiXml.so.5.23.3
+/V3/usr/lib64/libKPim5AkonadiAgentBase.so.5.24.0
+/V3/usr/lib64/libKPim5AkonadiCore.so.5.24.0
+/V3/usr/lib64/libKPim5AkonadiPrivate.so.5.24.0
+/V3/usr/lib64/libKPim5AkonadiWidgets.so.5.24.0
+/V3/usr/lib64/libKPim5AkonadiXml.so.5.24.0
 /V3/usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
-/V3/usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
 /usr/lib64/libKPim5AkonadiAgentBase.so.5
-/usr/lib64/libKPim5AkonadiAgentBase.so.5.23.3
+/usr/lib64/libKPim5AkonadiAgentBase.so.5.24.0
 /usr/lib64/libKPim5AkonadiCore.so.5
-/usr/lib64/libKPim5AkonadiCore.so.5.23.3
+/usr/lib64/libKPim5AkonadiCore.so.5.24.0
 /usr/lib64/libKPim5AkonadiPrivate.so.5
-/usr/lib64/libKPim5AkonadiPrivate.so.5.23.3
+/usr/lib64/libKPim5AkonadiPrivate.so.5.24.0
 /usr/lib64/libKPim5AkonadiWidgets.so.5
-/usr/lib64/libKPim5AkonadiWidgets.so.5.23.3
+/usr/lib64/libKPim5AkonadiWidgets.so.5.24.0
 /usr/lib64/libKPim5AkonadiXml.so.5
-/usr/lib64/libKPim5AkonadiXml.so.5.23.3
+/usr/lib64/libKPim5AkonadiXml.so.5.24.0
 /usr/lib64/qt5/plugins/designer/akonadi5widgets.so
 /usr/lib64/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
-/usr/lib64/qt5/plugins/sqldrivers/libqsqlite3.so
 
 %files license
 %defattr(0644,root,root,0755)
