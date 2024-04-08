@@ -1,0 +1,7 @@
+/builddir/build/BUILDROOT/akonadi-24.02.1-90.x86_64/etc/:
+/builddir/build/BUILDROOT/akonadi-24.02.1-90.x86_64/etc/apparmor.d:
+apparmor.d
+mariadbd_akonadi
+mysqld_akonadi
+postgresql_akonadi
+usr.bin.akonadiserver
