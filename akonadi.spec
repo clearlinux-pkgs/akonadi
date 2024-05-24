@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : akonadi
-Version  : 24.02.2
-Release  : 92
-URL      : https://download.kde.org/stable/release-service/24.02.2/src/akonadi-24.02.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/24.02.2/src/akonadi-24.02.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/24.02.2/src/akonadi-24.02.2.tar.xz.sig
+Version  : 24.05.0
+Release  : 93
+URL      : https://download.kde.org/stable/release-service/24.05.0/src/akonadi-24.05.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/24.05.0/src/akonadi-24.05.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/24.05.0/src/akonadi-24.05.0.tar.xz.sig
 Source2  : BB463350D6EF31EF.pkey
 Summary  : No detailed summary available
 Group    : Development/Tools
@@ -110,15 +110,15 @@ chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
 grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) BB463350D6EF31EF' gpg.status
-%setup -q -n akonadi-24.02.2
-cd %{_builddir}/akonadi-24.02.2
+%setup -q -n akonadi-24.05.0
+cd %{_builddir}/akonadi-24.05.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1713217460
+export SOURCE_DATE_EPOCH=1716511494
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -188,7 +188,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1713217460
+export SOURCE_DATE_EPOCH=1716511494
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi
 cp %{_builddir}/akonadi-%{version}/.krazy.license %{buildroot}/usr/share/package-licenses/akonadi/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4 || :
@@ -226,6 +226,7 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/akonadi-db-migrator
 /V3/usr/bin/akonadi2xml
 /V3/usr/bin/akonadi_agent_launcher
 /V3/usr/bin/akonadi_agent_server
@@ -237,6 +238,7 @@ popd
 /V3/usr/bin/akonadiserver
 /V3/usr/bin/akonaditest
 /V3/usr/bin/asapcat
+/usr/bin/akonadi-db-migrator
 /usr/bin/akonadi2xml
 /usr/bin/akonadi_agent_launcher
 /usr/bin/akonadi_agent_server
@@ -608,23 +610,23 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim6AkonadiAgentBase.so.6.0.2
-/V3/usr/lib64/libKPim6AkonadiCore.so.6.0.2
-/V3/usr/lib64/libKPim6AkonadiPrivate.so.6.0.2
-/V3/usr/lib64/libKPim6AkonadiWidgets.so.6.0.2
-/V3/usr/lib64/libKPim6AkonadiXml.so.6.0.2
+/V3/usr/lib64/libKPim6AkonadiAgentBase.so.6.1.0
+/V3/usr/lib64/libKPim6AkonadiCore.so.6.1.0
+/V3/usr/lib64/libKPim6AkonadiPrivate.so.6.1.0
+/V3/usr/lib64/libKPim6AkonadiWidgets.so.6.1.0
+/V3/usr/lib64/libKPim6AkonadiXml.so.6.1.0
 /V3/usr/lib64/qt6/plugins/designer/akonadi6widgets.so
 /V3/usr/lib64/qt6/plugins/pim6/akonadi/akonadi_test_searchplugin.so
 /usr/lib64/libKPim6AkonadiAgentBase.so.6
-/usr/lib64/libKPim6AkonadiAgentBase.so.6.0.2
+/usr/lib64/libKPim6AkonadiAgentBase.so.6.1.0
 /usr/lib64/libKPim6AkonadiCore.so.6
-/usr/lib64/libKPim6AkonadiCore.so.6.0.2
+/usr/lib64/libKPim6AkonadiCore.so.6.1.0
 /usr/lib64/libKPim6AkonadiPrivate.so.6
-/usr/lib64/libKPim6AkonadiPrivate.so.6.0.2
+/usr/lib64/libKPim6AkonadiPrivate.so.6.1.0
 /usr/lib64/libKPim6AkonadiWidgets.so.6
-/usr/lib64/libKPim6AkonadiWidgets.so.6.0.2
+/usr/lib64/libKPim6AkonadiWidgets.so.6.1.0
 /usr/lib64/libKPim6AkonadiXml.so.6
-/usr/lib64/libKPim6AkonadiXml.so.6.0.2
+/usr/lib64/libKPim6AkonadiXml.so.6.1.0
 /usr/lib64/qt6/plugins/designer/akonadi6widgets.so
 /usr/lib64/qt6/plugins/pim6/akonadi/akonadi_test_searchplugin.so
 
