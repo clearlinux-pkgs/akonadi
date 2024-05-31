@@ -9,7 +9,7 @@
 #
 Name     : akonadi
 Version  : 24.05.0
-Release  : 93
+Release  : 94
 URL      : https://download.kde.org/stable/release-service/24.05.0/src/akonadi-24.05.0.tar.xz
 Source0  : https://download.kde.org/stable/release-service/24.05.0/src/akonadi-24.05.0.tar.xz
 Source1  : https://download.kde.org/stable/release-service/24.05.0/src/akonadi-24.05.0.tar.xz.sig
