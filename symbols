@@ -36,7 +36,6 @@ libKPim6AkonadiAgentBase.so.6:Akonadi::ResourceBase::collectionTreeSynchronized(
 libKPim6AkonadiAgentBase.so.6:Akonadi::ResourceBase::collectionsRetrievalDone()
 libKPim6AkonadiAgentBase.so.6:Akonadi::ResourceBase::deferTask()
 libKPim6AkonadiAgentBase.so.6:Akonadi::ResourceBase::doSetOnline(bool)
-libKPim6AkonadiAgentBase.so.6:Akonadi::ResourceBase::init(Akonadi::ResourceBase&)
 libKPim6AkonadiAgentBase.so.6:Akonadi::ResourceBase::itemsRetrievalDone()
 libKPim6AkonadiAgentBase.so.6:Akonadi::ResourceBase::retrieveNextItemSyncBatch(int)
 libKPim6AkonadiAgentBase.so.6:Akonadi::ResourceBase::retrieveTags()
